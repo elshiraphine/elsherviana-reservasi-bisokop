@@ -22,12 +22,24 @@ public class StudioController {
 
     @PostMapping("/createbulk")
     @ResponseStatus(HttpStatus.CREATED)
-    public List<Studio> createStudios (@RequestBody List<Studio> studio) {
-        return studioService.addStudios(studio);
+    public List<Studio> createStudios (@RequestBody List<Studio> studios) {
+        return studioService.addStudios(studios);
     }
 
     @GetMapping("/getall")
     public List<Studio> getAll() {
         return studioService.getAllStudio();
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateStudio(@PathVariable Long id, @RequestBody Studio studio) {
+        studioService.updateStudio(studio, id);
+        return "Studio with id " + id + " updated";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteFilm(@PathVariable Long id) {
+        studioService.deleteStudio(id);
+        return "Studio with id " + id + " deleted";
     }
 }

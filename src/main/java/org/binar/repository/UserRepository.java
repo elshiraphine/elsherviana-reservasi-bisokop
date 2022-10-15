@@ -3,6 +3,6 @@ package org.binar.repository;
 import org.binar.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users, Integer> {
+public interface UserRepository extends JpaRepository<Users, Long> {
 
 }

@@ -2,6 +2,8 @@ package org.binar.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,12 +25,12 @@ public class Seat {
     @Column(nullable = false)
     private boolean seat_status;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, insertable = false)
+    @CreationTimestamp
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false, insertable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @OneToOne(mappedBy = "seat", cascade = CascadeType.ALL)

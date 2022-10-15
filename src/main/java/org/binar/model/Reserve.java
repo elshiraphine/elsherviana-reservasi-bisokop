@@ -2,6 +2,8 @@ package org.binar.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -15,12 +17,12 @@ public class Reserve {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long reserve_id;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, insertable = false)
+    @CreationTimestamp
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false, insertable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reserve_ticket")
