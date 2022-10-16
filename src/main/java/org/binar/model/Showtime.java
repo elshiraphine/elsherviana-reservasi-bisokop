@@ -18,6 +18,7 @@ public class Showtime {
     private Long showtime_id;
 
     @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date showtime;
 
     @Column(nullable = false)

@@ -6,8 +6,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Set;
+import java.util.Timer;
 
 @Entity
 @Getter
@@ -17,13 +19,13 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long schedule_id;
 
-    @Temporal(TemporalType.TIME)
+    // @Temporal(TemporalType.TIME)
     @Column(nullable = false)
-    private Date startTime;
+    private LocalTime startTime;
 
-    @Temporal(TemporalType.TIME)
+    // @Temporal(TemporalType.TIME)
     @Column(nullable = false)
-    private Date endTime;
+    private LocalTime endTime;
 
     @CreationTimestamp
     @Column(name = "created_at")
