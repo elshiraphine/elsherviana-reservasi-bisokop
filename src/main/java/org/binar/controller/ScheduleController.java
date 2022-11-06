@@ -20,6 +20,21 @@ public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
 
+    @Operation(
+            summary = "Add into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "create schedule into DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Schedule createSchedule (@RequestBody Schedule schedule) {
@@ -66,12 +81,42 @@ public class ScheduleController {
         return scheduleService.getAllSchedules();
     }
 
+    @Operation(
+            summary = "update into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "update schedule DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PutMapping("/update/{id}")
     public String updateSchedule (@PathVariable Long id, @RequestBody Schedule schedule) {
         scheduleService.updateSchedule(id, schedule);
         return "Schedule with id " + id + " updated";
     }
 
+    @Operation(
+            summary = "delete from database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "delete schedule from DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @DeleteMapping("/delete/{id}")
     public String deleteSchedule(@PathVariable Long id) {
         scheduleService.deleteSchedule(id);

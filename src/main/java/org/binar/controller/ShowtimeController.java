@@ -20,6 +20,21 @@ public class ShowtimeController {
     @Autowired
     ShowtimeService showtimeService;
 
+    @Operation(
+            summary = "Add into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "create showtime into DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Showtime addShowtime(@RequestBody Showtime showtime) {
@@ -70,12 +85,42 @@ public class ShowtimeController {
         return showtimeService.getAllShowtime();
     }
 
+    @Operation(
+            summary = "update into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "update showtime DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PutMapping("/update/{id}")
     public String updateShowtime(@PathVariable Long id, @RequestBody Showtime showtime) {
         showtimeService.updateShowtime(id, showtime);
         return "Showtime with id " + id + " updated";
     }
 
+    @Operation(
+            summary = "delete from database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "delete showtime from DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @DeleteMapping("/delete/{id}")
     public String deleteShowtime(@PathVariable Long id) {
         showtimeService.deleteShowtime(id);

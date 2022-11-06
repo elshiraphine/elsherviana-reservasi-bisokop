@@ -20,6 +20,21 @@ public class StudioController {
     @Autowired
     StudioService studioService;
 
+    @Operation(
+            summary = "Add into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "create studio into DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Studio createStudio (@RequestBody Studio studio) {
@@ -66,12 +81,42 @@ public class StudioController {
         return studioService.getAllStudio();
     }
 
+    @Operation(
+            summary = "update into database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "update studio DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @PutMapping("/update/{id}")
     public String updateStudio(@PathVariable Long id, @RequestBody Studio studio) {
         studioService.updateStudio(studio, id);
         return "Studio with id " + id + " updated";
     }
 
+    @Operation(
+            summary = "delete from database",
+            responses = {
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "200",
+                            description = "delete studio from DB",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    ),
+                    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+                            responseCode = "404",
+                            description = "Not Available",
+                            content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}
+                    )
+            }
+    )
     @DeleteMapping("/delete/{id}")
     public String deleteFilm(@PathVariable Long id) {
         studioService.deleteStudio(id);
